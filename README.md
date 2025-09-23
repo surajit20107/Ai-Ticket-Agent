@@ -35,7 +35,7 @@ Welcome to **AI Ticket Agent**, your intelligent automation assistant for ticket
 
 ```bash
 # Clone the repository
-git clone https://github.com/havker02/AI-Ticket-Agent.git
+git clone https://github.com/surajit20107/Ai-Ticket-Agent.git
 cd AI-Ticket-Agent
 
 # Install dependencies (choose one)
@@ -79,7 +79,7 @@ Licensed under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-- [havker02](https://github.com/havker02)
+- [surajit](https://github.com/surajit20107)
 
 ---
 
