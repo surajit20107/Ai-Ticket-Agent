@@ -9,17 +9,22 @@ import { ticketCreated } from "./inngest/functions/ticket.inngest.js";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/user.routes.js";
 import ticketRouter from "./routes/ticket.routes.js";
+import { limiter } from "./middlewares/ratelimit.js"
 
 const app = express();
 config();
+
+app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  }),
+);
 
 const port = process.env.PORT || 3000;
 
