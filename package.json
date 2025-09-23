@@ -1,0 +1,15 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "backend": "cd server && npm run dev",
+    "frontend": "cd client && npm run dev",
+    "inngest": "cd server && npm run inngest -y",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run inngest\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
