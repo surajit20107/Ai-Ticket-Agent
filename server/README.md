@@ -139,7 +139,7 @@ These are the main API endpoints your frontend will call.
 
 ## References
 
-- User Model: [`server/src/models/user.model.js`](./server/src/models/user.model.js)
+- User Model: [`server/src/models/user.model.js`](./src/models/user.model.js)
 - Ticket Model: [`server/src/models/ticket.model.js`](./server/src/models/ticket.model.js)
 - Main Controllers: [`server/src/controllers/user.controllers.js`](./server/src/controllers/user.controllers.js)
 
