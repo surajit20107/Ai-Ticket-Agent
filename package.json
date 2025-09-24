@@ -1,7 +1,6 @@
 {
   "name": "workspace",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "backend": "cd server && npm run dev",
     "frontend": "cd client && npm run dev",
@@ -11,5 +10,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
