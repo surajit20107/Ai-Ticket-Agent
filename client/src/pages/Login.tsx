@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,9 +38,12 @@ const Login = () => {
         localStorage.setItem("role", data.data?.role);
         navigate("/");
       }
+
+      if (data.status === 400) {
+        toast.error("Invalid credentials");
+      }
     } catch (error) {
-      console.error("Login error:", error);
-      alert("Something went wrong!");
+      toast.error("Too many requests");
     }
   };
 

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,23 +26,32 @@ const Register = () => {
       return alert("Passwords does not match!");
     }
     try {
-      const data = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/register`, formData, {
-        withCredentials: true,
-      });
-      console.log(data)
+      const data = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/register`,
+        formData,
+        {
+          withCredentials: true,
+        },
+      );
+      console.log(data);
       if (data.status === 201) {
         localStorage.setItem("token", data.data?.token);
         localStorage.setItem("name", data.data?.name);
         localStorage.setItem("email", data.data?.email);
         navigate("/");
       }
+
+      if (data.status === 400) {
+        toast.error("Email already exists");
+      }
     } catch (error) {
-      console.error("Error registering user:", error);
+      toast.error("Too many requests");
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center p-4">
+      <Toaster />
       <div className="card w-full max-w-md bg-white shadow-xl">
         <div className="card-body">
           <div className="text-center mb-6">

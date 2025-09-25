@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import toast, { Toaster } from "react-hot-toast";
 
 interface CheckAuthProps {
   children: React.ReactNode;
@@ -18,12 +19,14 @@ const CheckAuth = ({ children, isProtected }: CheckAuthProps) => {
     const role = localStorage.getItem("role");
 
     if (location.pathname === "/admin" && role === "user") {
+      toast.error("Unauthorized")
       navigate("/");
     }
 
     if (isProtected) {
       if (!token) {
         navigate("/login");
+        toast.error("Please login first")
       } else {
         setLoading(false);
       }
@@ -79,7 +82,12 @@ const CheckAuth = ({ children, isProtected }: CheckAuthProps) => {
       </div>
     );
   }
-  return children;
+  return (
+    <>
+      <Toaster />
+      {children}
+    </>
+  );
 };
 
 export default CheckAuth;
