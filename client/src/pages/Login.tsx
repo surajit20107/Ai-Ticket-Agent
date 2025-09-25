@@ -49,6 +49,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <Toaster />
       <div className="card w-full max-w-md bg-white shadow-xl">
         <div className="card-body">
           <div className="text-center mb-6">
