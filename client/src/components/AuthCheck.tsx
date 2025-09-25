@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface CheckAuthProps {
   children: React.ReactNode;
@@ -8,10 +8,16 @@ interface CheckAuthProps {
 
 const CheckAuth = ({ children, isProtected }: CheckAuthProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    if (location.pathname === "/admin" && role === "user") {
+      navigate("/");
+    }
 
     if (isProtected) {
       if (!token) {

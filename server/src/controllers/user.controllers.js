@@ -46,6 +46,7 @@ export const registerUser = async (req, res) => {
       message: "User registered successfully",
       email: user.email,
       name: user.name,
+      role: user.role,
       token,
     });
 
@@ -115,6 +116,9 @@ export const loginUser = async (req, res) => {
       success: true,
       message: "User logged in successfully",
       token,
+      email: user.email,
+      name: user.name,
+      role: user.role,
     });
   } catch (error) {
     console.error(error.message);

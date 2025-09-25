@@ -14,7 +14,7 @@ import { limiter } from "./middlewares/ratelimit.js"
 const app = express();
 config();
 
-app.use(limiter);
+//app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
