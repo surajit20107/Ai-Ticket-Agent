@@ -19,7 +19,6 @@ export const sendMail = async (to, subject, body) => {
       text: body,
     });
   } catch (error) {
-    console.error("❌ Error sending email:", error.message);
     throw error;
   }
 };

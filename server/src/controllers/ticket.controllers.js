@@ -47,7 +47,6 @@ export const createTicket = async (req, res) => {
         console.error("❌ Failed to send inngest event", err.message);
       });
   } catch (error) {
-    console.error("Failed to create ticket:", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -100,7 +99,6 @@ export const getTickets = async (req, res) => {
       page: page,
     });
   } catch (error) {
-    console.error("❌ Failed to get all tickets:", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -146,7 +144,6 @@ export const getTicket = async (req, res) => {
       ticket,
     });
   } catch (error) {
-    console.error("❌ Failed to get ticket:", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -170,7 +167,6 @@ export const deleteTicket = async (req, res) => {
       message: "Ticket deleted successfully",
     });
   } catch (error) {
-    console.error("Error while deleting ticket", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -203,7 +199,6 @@ export const toggleTicketStatus = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error("Error while changing ticket status", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

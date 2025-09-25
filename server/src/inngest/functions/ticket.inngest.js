@@ -38,7 +38,7 @@ export const ticketCreated = inngest.createFunction(
         if (!ticketResolver) {
           ticketResolver = await User.findOne({ role: "admin" });
         }
-console.log(ticketResolver)
+
         await Ticket.findByIdAndUpdate(
           ticket._id,
           {
@@ -66,7 +66,7 @@ console.log(ticketResolver)
         await sendMail(ticketResolver.email, mailSubject, mailBody);
       });
     } catch (error) {
-      console.error("❌ Error in ticket-created function:", error);
+      throw error;
     }
   },
 );

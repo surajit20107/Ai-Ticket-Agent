@@ -63,7 +63,6 @@ export const registerUser = async (req, res) => {
       });
     return;
   } catch (error) {
-    console.error(error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -121,7 +120,6 @@ export const loginUser = async (req, res) => {
       role: user.role,
     });
   } catch (error) {
-    console.error(error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -149,7 +147,6 @@ export const logoutUser = async (req, res) => {
       message: "User logged out successfully",
     });
   } catch (error) {
-    console.error(error.message);
     res.clearCookie("token");
     return res.status(500).json({
       success: false,
@@ -189,7 +186,6 @@ export const getUsers = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Error fetching users:", error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -214,7 +210,6 @@ export const currentUser = async (req, res) => {
       user,
     });
   } catch (error) {
-    console.error(error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -258,7 +253,10 @@ export const updateUserRole = async (req, res) => {
       user
     })
   } catch (error) {
-    console.error("Error updating user role:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    })
   }
 };
 
@@ -294,7 +292,6 @@ export const updateUserSkills = async (req, res) => {
       user,
     });
   } catch (error) {
-    console.error("Error updating user skills:", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

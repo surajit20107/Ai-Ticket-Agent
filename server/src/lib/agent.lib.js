@@ -45,8 +45,6 @@ Description: ${ticket.description}`;
     const response = await result.response;
     const text = response.text();
 
-    console.log("AI Response:", text);
-
     // Clean up the response to extract JSON
     let jsonString = text.trim();
 
@@ -61,7 +59,6 @@ Description: ${ticket.description}`;
 
     return JSON.parse(jsonString);
   } catch (error) {
-    console.error("Error processing ticket", error.message);
     // Return a fallback response if AI processing fails
     return {
       summary: `Support ticket: ${ticket.title}`,

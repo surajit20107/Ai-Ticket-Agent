@@ -33,7 +33,6 @@ export const isLoggedin = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    console.log("Error in isLoggedin middleware:", error.message);
     return res.status(500).json({
       success: false,
       message: error.message,

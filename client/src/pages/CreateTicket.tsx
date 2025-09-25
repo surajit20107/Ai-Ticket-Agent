@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreateTicket = () => {
   const navigate = useNavigate();
@@ -73,17 +74,16 @@ const CreateTicket = () => {
           withCredentials: true,
         },
       );
-      console.log(res)
+
       if (res.status !== 201) {
         throw new Error("Failed to create ticket");
       } else {
         setFormData({ title: "", description: "" });
-        alert("Ticket created successfully!");
+        toast.success("Ticket created");
         navigate("/");
       }
     } catch (error) {
-      console.error("Error creating ticket:", error);
-      alert("Failed to create ticket. Please try again.");
+      toast.error((error as Error)?.message || "Failed to create ticket");
     } finally {
       setIsSubmitting(false);
     }
@@ -91,6 +91,7 @@ const CreateTicket = () => {
 
   return (
     <div className="min-h-screen bg-base-200">
+      <Toaster />
       {/* Header */}
       <div className="bg-base-100 shadow-sm border-b">
         <div className="container mx-auto px-4 py-4 sm:py-6">

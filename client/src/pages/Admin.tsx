@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 interface User {
   _id: string;
@@ -53,7 +54,7 @@ const Admin = () => {
       );
       setTickets(res.data?.tickets || []);
     } catch (error) {
-      console.error("Error fetching tickets:", error);
+      toast.error("Failed to fetch tickets");
     } finally {
       setLoading(false);
     }
@@ -73,7 +74,7 @@ const Admin = () => {
       );
       setUsers(res.data?.users || []);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      toast.error("Failed to fetching users");
     } finally {
       setLoading(false);
     }
@@ -95,15 +96,13 @@ const Admin = () => {
       );
       fetchTickets();
     } catch (error) {
-      console.error("Error updating ticket status:", error);
-      alert("Failed to update ticket status");
+      toast.error("Failed to update ticket");
     }
   };
 
   // Update user role
   const updateUserRole = async (userId: string, role: string) => {
     try {
-      
       await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/${userId}/role`,
         { role },
@@ -113,8 +112,7 @@ const Admin = () => {
       );
       fetchUsers();
     } catch (error) {
-      console.error("Error updating user role:", error);
-      alert("Failed to update user role");
+      toast.error("Failed update user role");
     }
   };
 
@@ -131,7 +129,7 @@ const Admin = () => {
       fetchUsers();
       setEditingUser(null);
     } catch (error) {
-      console.error("Error updating user skills:", error);
+      toast.error("Failed to update user skills");
       alert("Failed to update user skills");
     }
   };
@@ -180,6 +178,7 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-base-200">
+      <Toaster />
       {/* Header */}
       <div className="bg-base-100 shadow-sm border-b">
         <div className="container mx-auto px-4 py-6">

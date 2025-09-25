@@ -53,5 +53,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.error("Error connecting to the database:", err.message);
+    console.error("❌ Failed connecting to the database:", err.message);
   });

@@ -20,11 +20,10 @@ export const userRegister = inngest.createFunction(
         Thank for signup, we're glad to have you onboard! 🎉
         `;
         await sendMail(email, subject, body);
-        console.log("✅ welcome email sent to", email);
         return { success: true };
       });
     } catch (error) {
-      console.error("❌ Error in user-register function:", error.message);
+      throw error;
     }
   },
 );

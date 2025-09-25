@@ -33,7 +33,7 @@ const Register = () => {
           withCredentials: true,
         },
       );
-      console.log(data);
+      
       if (data.status === 201) {
         localStorage.setItem("token", data.data?.token);
         localStorage.setItem("name", data.data?.name);

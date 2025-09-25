@@ -27,6 +27,7 @@ interface Ticket {
 
 const Tickets = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [error, setError] = useState<string>("");
 
   const fetchTickets = async () => {
     try {
@@ -38,10 +39,10 @@ const Tickets = () => {
       );
       setTickets(res.data?.tickets);
     } catch (error) {
-      console.error(error);
+      setError("No tickets found");
     }
   };
-
+  
   useEffect(() => {
     fetchTickets();
   }, []);
@@ -90,7 +91,7 @@ const Tickets = () => {
 
     return matchesStatus && matchesPriority && matchesSearch;
   });
-  console.log(tickets);
+
   return (
     <div className="min-h-screen bg-base-200">
       {/* Header */}
@@ -301,7 +302,7 @@ const Tickets = () => {
         {filteredTickets.length === 0 && tickets.length === 0 && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🎫</div>
-            <h3 className="text-xl font-semibold mb-2">No tickets yet</h3>
+            <h3 className="text-xl font-semibold mb-2">{error}</h3>
             <p className="text-base-content/60 mb-4">
               Create your first support ticket to get help with any issues.
             </p>

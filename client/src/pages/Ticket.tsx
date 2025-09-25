@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Ticket {
   _id: string;
@@ -33,6 +34,8 @@ const Ticket = () => {
   const [error, setError] = useState<string | null>(null);
 
   const deleteTicket = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this ticket?")) return;
+
     try {
       const res = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/api/tickets/${id}`,
@@ -44,7 +47,7 @@ const Ticket = () => {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to delete ticket");
     }
   };
 
@@ -60,7 +63,6 @@ const Ticket = () => {
       setTicket(res.data?.ticket);
       setError(null);
     } catch (error: any) {
-      console.error("Error fetching ticket:", error);
       setError(error.response?.data?.message || "Failed to fetch ticket");
     } finally {
       setLoading(false);
@@ -138,6 +140,7 @@ const Ticket = () => {
 
   return (
     <div className="min-h-screen bg-base-200">
+      <Toaster />
       <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
