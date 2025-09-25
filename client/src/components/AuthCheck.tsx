@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface CheckAuthProps {
   children: React.ReactNode;
@@ -35,7 +37,7 @@ const CheckAuth = ({ children, isProtected }: CheckAuthProps) => {
   }, [navigate, isProtected]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return null;
   }
   return children;
 };
