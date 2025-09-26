@@ -14,8 +14,8 @@ import {
 const router = express.Router();
 
 router.get("/users", isLoggedin, getUsers); // admin only
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+router.post("/register", authLimiter, registerUser);
+router.post("/login", authLimiter, loginUser);
 router.post("/logout", isLoggedin, logoutUser);
 router.get("/me", isLoggedin, currentUser);
 router.patch("/:id/role", isLoggedin, updateUserRole);
