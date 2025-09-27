@@ -26,7 +26,6 @@ const CheckAuth = ({ children, isProtected }: CheckAuthProps) => {
     if (isProtected) {
       if (!token) {
         navigate("/login");
-        toast.error("Please login first")
       } else {
         setLoading(false);
       }
