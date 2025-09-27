@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckAuth from "./components/AuthCheck.tsx";
+import Navbar from "./components/Navbar.tsx";
 import Tickets from "./pages/Tickets.tsx";
 import Ticket from "./pages/Ticket.tsx";
 import Login from "./pages/Login.tsx";
@@ -13,6 +14,7 @@ import CreateTicket from "./pages/CreateTicket.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route
           path="/Login"
