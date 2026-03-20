@@ -28,6 +28,7 @@ app.use(
 
 const port = process.env.PORT || 3000;
 
+// ping route for cron job monitoring
 app.get("/", (_, res) => {
   res.status(200).json({
     message: "Welcome to AI Ticket App 🚀",
@@ -36,6 +37,15 @@ app.get("/", (_, res) => {
     github: "https://github.com/surajit20107",
   });
 });
+
+// ping route for uptimerobot
+// for avoiding inactivity server spin down
+app.head("/", (_, res) => {
+  res.status(200).json({
+    message: "server is running...!!",
+  });
+});
+
 app.use("/api/users", userRouter);
 app.use("/api/tickets", ticketRouter);
 app.use(
